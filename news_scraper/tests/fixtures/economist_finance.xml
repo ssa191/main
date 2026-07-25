@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>The Economist: Finance &amp; economics</title>
+  <link href="https://www.economist.com/finance-and-economics"/>
+  <entry>
+    <title>The world economy's surprising resilience</title>
+    <link href="https://www.economist.com/finance-and-economics/2026/07/15/resilience"/>
+    <id>https://www.economist.com/finance-and-economics/2026/07/15/resilience</id>
+    <summary>Despite higher rates, growth has held up better than forecast.</summary>
+    <updated>2026-07-15T06:00:00Z</updated>
+    <author><name>The Economist</name></author>
+  </entry>
+  <entry>
+    <title>A new era for central banks</title>
+    <link href="https://www.economist.com/finance-and-economics/2026/06/28/central-banks"/>
+    <id>https://www.economist.com/finance-and-economics/2026/06/28/central-banks</id>
+    <summary>Policymakers weigh the lessons of the past decade.</summary>
+    <updated>2026-06-28T06:00:00Z</updated>
+  </entry>
+</feed>

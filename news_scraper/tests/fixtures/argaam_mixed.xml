@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Argaam</title>
+    <link>https://www.argaam.com</link>
+    <description>Financial news</description>
+    <item>
+      <title>Saudi Aramco reports higher quarterly profit</title>
+      <link>https://www.argaam.com/en/article/articledetail/id/1700001</link>
+      <guid>https://www.argaam.com/en/article/articledetail/id/1700001</guid>
+      <description>The energy giant posted results ahead of estimates.</description>
+      <pubDate>Mon, 20 Jul 2026 07:15:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>أرامكو السعودية تعلن نتائج الربع الثاني</title>
+      <link>https://www.argaam.com/ar/article/articledetail/id/1700002</link>
+      <guid>https://www.argaam.com/ar/article/articledetail/id/1700002</guid>
+      <description>الشركة تسجل أرباحاً أعلى من التوقعات.</description>
+      <pubDate>Mon, 20 Jul 2026 07:20:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

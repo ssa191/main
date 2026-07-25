@@ -1,0 +1,9 @@
+# Runtime output — the scraped archive and dedupe state are generated, not source
+articles/
+state/
+
+# venv created by run.sh
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/

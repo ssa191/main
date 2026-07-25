@@ -1,0 +1,76 @@
+# ---------------------------------------------------------------------------
+# news_scraper configuration
+#
+# Sources are ingested from each publisher's PUBLIC RSS feeds. This is the
+# terms-of-service-respectful way to follow the Wall Street Journal and The
+# Economist, which are paywalled: their RSS feeds publish headlines, summaries,
+# authors, timestamps and article links for free. Full article bodies stay
+# behind the paywall and are NOT fetched (see options.fetch_full_text below).
+#
+# Argaam publishes an open news feed and is fetched the same way.
+#
+# Feed URLs are the publishers' standard, well-known RSS endpoints. Verify /
+# adjust them on first run for your region — publishers occasionally move feeds.
+# ---------------------------------------------------------------------------
+
+output_dir: articles          # where the organized tree is written
+state_dir: state              # dedupe store + catalog live here
+
+options:
+  # Bucketing: how the "week" folder is labelled under each month.
+  #   month -> W1..W5  (week-of-month; nests cleanly, never straddles months)
+  #   iso   -> W01..W53 (ISO 8601 week-of-year; unambiguous, standard)
+  week_scheme: month
+
+  # Respect paywalls: keep this false. When true the scraper would attempt to
+  # download full article HTML, which violates the WSJ/Economist terms for
+  # paywalled articles. Left as an explicit, off-by-default switch.
+  fetch_full_text: false
+
+  # HTTP behaviour
+  user_agent: "news-scraper/1.0 (+personal-research; contact configured owner)"
+  request_timeout: 30          # seconds per feed
+  retries: 3                   # network retries per feed (exponential backoff)
+  backoff_base: 2              # seconds; 2s, 4s, 8s ...
+
+sources:
+  - id: wsj
+    name: The Wall Street Journal
+    enabled: true
+    feeds:
+      - section: world
+        url: https://feeds.a.dj.com/rss/RSSWorldNews.xml
+      - section: markets
+        url: https://feeds.a.dj.com/rss/RSSMarketsMain.xml
+      - section: business
+        url: https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml
+      - section: technology
+        url: https://feeds.a.dj.com/rss/RSSWSJD.xml
+      - section: opinion
+        url: https://feeds.a.dj.com/rss/RSSOpinion.xml
+
+  - id: economist
+    name: The Economist
+    enabled: true
+    feeds:
+      - section: finance-and-economics
+        url: https://www.economist.com/finance-and-economics/rss.xml
+      - section: business
+        url: https://www.economist.com/business/rss.xml
+      - section: the-world-this-week
+        url: https://www.economist.com/the-world-this-week/rss.xml
+      - section: international
+        url: https://www.economist.com/international/rss.xml
+      - section: leaders
+        url: https://www.economist.com/leaders/rss.xml
+
+  - id: argaam
+    name: Argaam
+    enabled: true
+    feeds:
+      # Argaam's public English and Arabic news feeds. Adjust if your account
+      # or region exposes different feed paths.
+      - section: english
+        url: https://www.argaam.com/en/rss
+      - section: arabic
+        url: https://www.argaam.com/ar/rss

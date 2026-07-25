@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>WSJ.com: Markets</title>
+    <link>https://www.wsj.com/news/markets</link>
+    <description>Markets news</description>
+    <item>
+      <title>Stocks Rally as Inflation Cools</title>
+      <link>https://www.wsj.com/articles/stocks-rally-inflation-cools-abc123</link>
+      <guid isPermaLink="true">https://www.wsj.com/articles/stocks-rally-inflation-cools-abc123</guid>
+      <description>Major indexes climbed after fresh data showed price pressures easing.</description>
+      <pubDate>Tue, 21 Jul 2026 13:30:00 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jane Trader</dc:creator>
+    </item>
+    <item>
+      <title>Oil Prices Slip on Supply Outlook</title>
+      <link>https://www.wsj.com/articles/oil-prices-slip-def456</link>
+      <guid isPermaLink="true">https://www.wsj.com/articles/oil-prices-slip-def456</guid>
+      <description>Crude fell as producers signaled higher output.</description>
+      <pubDate>Wed, 08 Jul 2026 09:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
