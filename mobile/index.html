@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Pocket Finance" />
+  <title>Pocket Finance</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <img src="icons/icon-192.png" alt="" class="brand-logo" />
+      <div>
+        <h1>Pocket Finance</h1>
+        <p class="tagline">Deal-desk calculators, offline</p>
+      </div>
+    </div>
+    <button id="installBtn" class="install-btn" hidden>Install</button>
+  </header>
+
+  <main id="views">
+    <!-- RETURNS -->
+    <section class="view" data-view="returns">
+      <div class="card">
+        <h2>Return &amp; CAGR</h2>
+        <p class="hint">Annualised growth between two values over a holding period.</p>
+        <label>Initial value
+          <input type="number" inputmode="decimal" id="ret_initial" placeholder="1,000,000" />
+        </label>
+        <label>Final value
+          <input type="number" inputmode="decimal" id="ret_final" placeholder="1,750,000" />
+        </label>
+        <label>Holding period (years)
+          <input type="number" inputmode="decimal" id="ret_years" placeholder="4" />
+        </label>
+        <div class="result-grid" id="ret_out"></div>
+      </div>
+    </section>
+
+    <!-- IRR / NPV -->
+    <section class="view" data-view="irr" hidden>
+      <div class="card">
+        <h2>IRR &amp; NPV</h2>
+        <p class="hint">Enter the cash flow at each period. Period 0 is usually the initial outflow (negative).</p>
+        <label>Discount rate for NPV (% per period)
+          <input type="number" inputmode="decimal" id="irr_rate" placeholder="10" />
+        </label>
+        <div id="cf_rows" class="cf-rows"></div>
+        <div class="row-actions">
+          <button class="ghost" id="cf_add">+ Add period</button>
+          <button class="ghost" id="cf_reset">Reset</button>
+        </div>
+        <div class="result-grid" id="irr_out"></div>
+      </div>
+    </section>
+
+    <!-- LOAN -->
+    <section class="view" data-view="loan" hidden>
+      <div class="card">
+        <h2>Loan / Amortisation</h2>
+        <p class="hint">Fixed-rate, equal-instalment loan.</p>
+        <label>Principal
+          <input type="number" inputmode="decimal" id="loan_principal" placeholder="500,000" />
+        </label>
+        <label>Annual interest rate (%)
+          <input type="number" inputmode="decimal" id="loan_rate" placeholder="6.5" />
+        </label>
+        <label>Term (years)
+          <input type="number" inputmode="decimal" id="loan_years" placeholder="15" />
+        </label>
+        <div class="result-grid" id="loan_out"></div>
+        <button class="ghost full" id="loan_toggle">Show amortisation schedule</button>
+        <div class="table-wrap" id="loan_schedule" hidden></div>
+      </div>
+    </section>
+
+    <!-- VAT / ZAKAT -->
+    <section class="view" data-view="tax" hidden>
+      <div class="card">
+        <h2>VAT &amp; Zakat (KSA)</h2>
+        <p class="hint">KSA standard VAT is 15%. Zakat base rate is 2.5%. Rates are editable.</p>
+        <label>Amount
+          <input type="number" inputmode="decimal" id="tax_amount" placeholder="100,000" />
+        </label>
+        <div class="two-col">
+          <label>VAT rate (%)
+            <input type="number" inputmode="decimal" id="tax_vat" value="15" />
+          </label>
+          <label>Zakat rate (%)
+            <input type="number" inputmode="decimal" id="tax_zakat" value="2.5" />
+          </label>
+        </div>
+        <div class="seg" role="tablist">
+          <button class="seg-btn active" data-vatmode="add">Amount is net (add VAT)</button>
+          <button class="seg-btn" data-vatmode="incl">Amount is gross (extract VAT)</button>
+        </div>
+        <div class="result-grid" id="tax_out"></div>
+      </div>
+    </section>
+
+    <!-- MARGIN -->
+    <section class="view" data-view="margin" hidden>
+      <div class="card">
+        <h2>Margin / Markup</h2>
+        <p class="hint">Fill any two of cost, price, or margin — the rest compute.</p>
+        <label>Cost
+          <input type="number" inputmode="decimal" id="mg_cost" placeholder="80" />
+        </label>
+        <label>Sale price
+          <input type="number" inputmode="decimal" id="mg_price" placeholder="100" />
+        </label>
+        <label>Target margin (%)
+          <input type="number" inputmode="decimal" id="mg_margin" placeholder="20" />
+        </label>
+        <div class="result-grid" id="mg_out"></div>
+      </div>
+    </section>
+
+    <!-- FX -->
+    <section class="view" data-view="fx" hidden>
+      <div class="card">
+        <h2>FX Converter</h2>
+        <p class="hint">Offline rates you control. Tap a rate to edit it — values are stored on this device.</p>
+        <label>Amount
+          <input type="number" inputmode="decimal" id="fx_amount" placeholder="1000" />
+        </label>
+        <div class="two-col">
+          <label>From
+            <select id="fx_from"></select>
+          </label>
+          <label>To
+            <select id="fx_to"></select>
+          </label>
+        </div>
+        <button class="ghost full" id="fx_swap">Swap ⇅</button>
+        <div class="result-grid" id="fx_out"></div>
+        <details class="rates">
+          <summary>Edit rates (per 1 USD)</summary>
+          <div id="fx_rates"></div>
+          <button class="ghost full" id="fx_reset_rates">Reset to defaults</button>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar" id="tabbar">
+    <button data-tab="returns" class="active"><span class="ico">📈</span>Returns</button>
+    <button data-tab="irr"><span class="ico">💧</span>IRR/NPV</button>
+    <button data-tab="loan"><span class="ico">🏦</span>Loan</button>
+    <button data-tab="tax"><span class="ico">🧾</span>VAT/Zakat</button>
+    <button data-tab="margin"><span class="ico">📊</span>Margin</button>
+    <button data-tab="fx"><span class="ico">💱</span>FX</button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
