@@ -1,0 +1,17 @@
+# Secrets — never commit the API key.
+.env
+
+# Data / outputs (regenerable, and may carry licensed AIS-derived data).
+out/
+*.db
+*.sqlite
+*.csv
+*.xlsx
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
