@@ -85,11 +85,14 @@ def _snapshot_from_pro(uuid: str, port_key: str, pro: dict) -> dict:
         "speed_kn": _num(_pick(pro, "speed")),
         "lat": _num(_pick(pro, "lat", "latitude")),
         "lon": _num(_pick(pro, "lon", "longitude")),
-        "destination": _port_name(pro, "destination_port", "dest_port",
+        # Field names verified live against vessel_pro (2026-07): destination is
+        # dest_port, origin is dep_port, draught is current_draught, status is
+        # navigation_status, eta is eta_UTC.
+        "destination": _port_name(pro, "dest_port", "destination_port",
                                    "destination"),
-        "origin_port": _port_name(pro, "departure_port", "origin_port",
-                                   "last_port"),
-        "eta": _pick(pro, "eta", "eta_utc"),
+        "origin_port": _port_name(pro, "dep_port", "departure_port",
+                                   "origin_port", "last_port"),
+        "eta": _pick(pro, "eta_utc", "eta"),
         "source": "vessel_pro",
     }
 

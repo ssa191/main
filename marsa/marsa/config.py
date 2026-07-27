@@ -41,21 +41,25 @@ from __future__ import annotations
 PORTS: dict[str, dict] = {
     "jeddah": {
         "label": "Jeddah Islamic Port", "unlocode": "SAJED",
+        "uuid": "b347dce9-5318-a3c9-7580-a867630778b0",
         "lat": 21.48182, "lon": 39.14713,
         "scan_radius_nm": 15, "port_radius_nm": 7, "grain_berths": [],
     },
     "kap": {
         "label": "King Abdullah Port", "unlocode": "SAKAC",
+        "uuid": "42e916b2-366d-a531-370c-72e163ad2ee1",
         "lat": 22.52477, "lon": 39.09416,
         "scan_radius_nm": 12, "port_radius_nm": 6, "grain_berths": [],
     },
     "yanbu_cml": {
         "label": "Yanbu Commercial Port", "unlocode": "SAYNB",
+        "uuid": "8f5f5fb1-7562-e5b2-b7dd-ce582e339181",
         "lat": 24.0665, "lon": 38.0675,
         "scan_radius_nm": 8, "port_radius_nm": 5, "grain_berths": [],
     },
     "yanbu_ind": {
         "label": "Yanbu Industrial Port", "unlocode": "SAYBI",
+        "uuid": "589e0476-f3dc-4698-0d07-9efe70d66184",
         "lat": 23.949, "lon": 38.2375,
         "scan_radius_nm": 8, "port_radius_nm": 5, "grain_berths": [],
     },
@@ -66,6 +70,7 @@ PORTS: dict[str, dict] = {
     },
     "dammam": {
         "label": "Dammam (King Abdulaziz Port)", "unlocode": "SADMM",
+        "uuid": "7f78df2b-a529-641f-7f57-77e90d261181",
         "lat": 26.441, "lon": 50.1485,
         "scan_radius_nm": 15, "port_radius_nm": 7, "grain_berths": [],
     },
@@ -76,6 +81,7 @@ PORTS: dict[str, dict] = {
     },
     "jazan": {
         "label": "Jazan Port", "unlocode": "SAGIZ",
+        "uuid": "d587e71d-0d52-a1ae-fc97-bf9fa1d36e0a",
         "lat": 16.91887, "lon": 42.55726,
         "scan_radius_nm": 12, "port_radius_nm": 6, "grain_berths": [],
     },

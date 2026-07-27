@@ -44,12 +44,23 @@ def discover(sel):
             continue
         print(f"  {len(terminals)} terminal(s). Grain quays are usually named "
               "'grain', 'silo', 'SAGO', or 'bulk':")
+        found_candidate = False
         for t in terminals:
             name = t.get("name") or t.get("terminal_name") or "?"
             lat = t.get("lat") or t.get("latitude")
             lon = t.get("lon") or t.get("longitude")
-            hint = "  <-- candidate" if _looks_grain(name) else ""
+            is_cand = _looks_grain(name)
+            found_candidate = found_candidate or is_cand
+            hint = "  <-- candidate" if is_cand else ""
             print(f"    - {name:38} lat={lat} lon={lon}{hint}")
+        if not found_candidate:
+            # Observed live (2026-07): Datalastic lists container terminals only
+            # for the KSA ports, no grain quay. Don't pretend otherwise.
+            print("  No grain-named terminal here (Datalastic tends to list "
+                  "container terminals only). Get the SAGO silo berth from a "
+                  "satellite/port-authority plan, OR derive it empirically once "
+                  "draught_capture has logged where grain hulls actually berth.")
+            continue
         print("  Copy the grain quay into config.PORTS['%s']['grain_berths'] as:"
               % pk)
         print('    {"name": "...", "lat": <lat>, "lon": <lon>, "radius_nm": 0.5}')
