@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marsa"
+version = "0.1.0"
+description = "MARSA — a Gulf grain-flow intelligence engine (AIS -> port calls -> tonnage)."
+requires-python = ">=3.9"
+dependencies = ["requests>=2.28", "openpyxl>=3.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+include = ["marsa*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
