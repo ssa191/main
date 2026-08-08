@@ -2,6 +2,37 @@
 
 A Claude Code skill for generating and editing images using the Gemini CLI's nanobanana extension.
 
+## Setup notes for this repository
+
+This skill has been installed into `.claude/skills/nano-banana/`. To use it, the
+host environment needs the Gemini CLI, the nanobanana extension, and an API key.
+The exact steps that were verified to work:
+
+```bash
+# 1. Install the CLI
+npm install -g @google/gemini-cli
+
+# 2. Provide your Gemini API key via environment variable.
+#    The nanobanana extension reads NANOBANANA_API_KEY (this is the one that
+#    actually matters). GEMINI_API_KEY is what SKILL.md's presence-check looks
+#    for, so set both. Keep the value OUT of the repo — put it in your shell
+#    profile or the environment's secret/env-var configuration, never a
+#    committed file.
+export NANOBANANA_API_KEY="your-api-key"
+export GEMINI_API_KEY="your-api-key"
+
+# 3. Install the extension non-interactively (the plain command prompts for
+#    consent + settings and will hang in an automated shell).
+gemini extensions install https://github.com/gemini-cli-extensions/nanobanana \
+  --consent --skip-settings
+
+# 4. (Optional) persist the key into the extension's own keychain-backed config:
+gemini extensions config nanobanana "API Key"
+```
+
+Generated images are written to `./nanobanana-output/` in the current working
+directory; that folder is git-ignored so images aren't committed.
+
 ## Features
 
 - **Text-to-image generation** - Create images from natural language prompts
