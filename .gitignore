@@ -14,3 +14,8 @@ venv/
 .DS_Store
 .idea/
 .vscode/
+
+# Ras Al Khair analysis: cached Datalastic payloads and presigned URLs
+cache/zips/
+cache/urls.json
+cache/vessel_info.json
